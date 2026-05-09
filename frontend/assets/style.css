@@ -1,0 +1,41 @@
+/* AccessLens supplementary stylesheet */
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1424;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e3a5f;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+/* print styles */
+@media print {
+  .search-section,
+  .agency-filters,
+  header nav {
+    display: none !important;
+  }
+
+  #answer-panel {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+
+  .source-card {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+  }
+}

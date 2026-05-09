@@ -1,0 +1,29 @@
+# Environment
+.env
+venv/
+.venv/
+env/
+
+# Qdrant local data
+qdrant_data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
