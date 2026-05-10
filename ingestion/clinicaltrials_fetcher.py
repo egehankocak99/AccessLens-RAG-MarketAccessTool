@@ -31,8 +31,10 @@ class ClinicalTrialsFetcher:
         return [p for p in parsed if p.get("title") or p.get("conditions")]
 
     def _build_params(self, query: str) -> dict[str, Any]:
+        # ClinicalTrials API rejects very long query strings with 400; truncate to safe length
+        safe_query = query[:200]
         return {
-            "query.term": query,
+            "query.term": safe_query,
             "filter.geo": "distance(51.5,10,3000km)",
             "filter.overallStatus": "|".join(RELEVANT_STATUSES),
             "pageSize": self.page_size,

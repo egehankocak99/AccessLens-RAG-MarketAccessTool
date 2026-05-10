@@ -245,38 +245,5 @@ def _estimate_faithfulness(answer: str, chunks: list[dict[str, Any]]) -> float:
     return round(cited / len(sentences), 4)
 
 
-router = APIRouter(tags=["query"])
 
-
-@router.post("/query", response_model=QueryResponse, summary="Execute EU Market Access RAG query")
-async def query_endpoint(body: QueryRequest, request: Request) -> QueryResponse:
-    start_time = time.monotonic()
-
-
-    state = request.app.state
-    rewriter = getattr(state, "query_rewriter", None)
-    searcher = getattr(state, "hybrid_searcher", None)
-    reranker = getattr(state, "reranker", None)
-    generator = getattr(state, "generator", None)
-
-    if any(c is None for c in [rewriter, searcher, reranker, generator]):
-        raise HTTPException(
-            status_code=503,
-            detail="AccessLens pipeline components are not fully initialised. Check server logs.",
-        )
-
-    try:
-        return await _run_pipeline(
-            body=body,
-            rewriter=rewriter,
-            searcher=searcher,
-            reranker=reranker,
-            generator=generator,
-            start_time=start_time,
-        )
-    except HTTPException:
-        raise
-    except Exception as exc:  # noqa: BLE001
-        logger.exception("Unhandled error in /query pipeline: %s", exc)
-        raise HTTPException(status_code=500, detail=f"Pipeline error: {exc}") from exc
 

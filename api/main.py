@@ -66,12 +66,14 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     logger.info("Loading document embedder (BAAI/bge-base-en-v1.5)...")
     embedder = DocumentEmbedder()
+    embedder.model  # eagerly load weights now, not on first query
     app.state.embedder = embedder
 
     searcher = HybridSearcher(store=store, embedder=embedder)
     app.state.hybrid_searcher = searcher
 
     reranker = CrossEncoderReranker()
+    reranker.model  # eagerly load weights now, not on first query
     app.state.reranker = reranker
 
     rewriter = QueryRewriter()
