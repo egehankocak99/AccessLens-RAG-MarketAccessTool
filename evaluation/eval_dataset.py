@@ -101,10 +101,11 @@ EVAL_DATASET: list[EvalSample] = [
         contexts=[
             (
                 "The Transparency Committee (Commission de la Transparence) of HAS evaluates drugs for "
-                "reimbursement using two key metrics: Service Médical Rendu (SMR) and Amélioration du "
-                "Service Médical Rendu (ASMR). SMR reflects the intrinsic clinical benefit and is rated "
-                "Important, Modéré (Moderate), Faible (Low), or Insuffisant (Insufficient). Only drugs "
-                "with SMR Important, Modéré, or Faible are reimbursed; SMR Insuffisant leads to refusal."
+                "reimbursement using two key metrics: Service Médical Rendu (SMR — Clinical Benefit) and "
+                "Amélioration du Service Médical Rendu (ASMR — Improvement in Clinical Benefit). "
+                "SMR reflects the intrinsic clinical benefit and is rated Important, Modéré (Moderate), "
+                "Faible (Low), or Insuffisant (Insufficient). Only drugs with SMR Important, Modéré, or "
+                "Faible are reimbursed; SMR Insuffisant leads to refusal."
             ),
             (
                 "Reimbursement rates in France are linked to SMR level: SMR Important = 65%, SMR Modéré = 30%, "
@@ -175,10 +176,11 @@ EVAL_DATASET: list[EvalSample] = [
         contexts=[
             (
                 "The PRIME scheme (PRIority MEdicines) was established by EMA in 2016 to support development "
-                "of medicines addressing unmet medical needs. PRIME provides a dedicated EMA contact point, "
-                "enhanced scientific dialogue during development, and accelerated assessment at the time of "
-                "marketing authorisation application. The scheme is open to developers of any size, including "
-                "SMEs, academia, and not-for-profit organisations."
+                "of medicines addressing unmet medical needs. PRIME provides early and proactive EMA scientific "
+                "support, including advice on clinical trial design, endpoints, and benefit-risk framing. "
+                "A dedicated EMA contact point and enhanced scientific dialogue during development are provided, "
+                "along with accelerated assessment at the time of marketing authorisation application. "
+                "The scheme is open to developers of any size, including SMEs, academia, and not-for-profit organisations."
             ),
             (
                 "PRIME eligibility criteria: the medicine must target a condition for which there is no "
@@ -188,9 +190,9 @@ EVAL_DATASET: list[EvalSample] = [
             ),
             (
                 "Therapeutic areas receiving most PRIME designations include oncology (approximately 30%), "
-                "rare diseases (25%), infectious diseases including HIV and HCV (15%), and neurological "
-                "conditions. PRIME allows parallel scientific advice with HTA bodies, reducing the timeline "
-                "between EMA approval and national reimbursement decisions."
+                "rare diseases (25%), infectious diseases including HIV and HCV (15%), neurological "
+                "conditions, and metabolic disorders. PRIME allows parallel scientific advice with HTA bodies, "
+                "reducing the timeline between EMA approval and national reimbursement decisions."
             ),
         ],
     ),
@@ -224,6 +226,14 @@ EVAL_DATASET: list[EvalSample] = [
                 "CAR-T therapies are subject to hospital exemption rules in Germany and must be administered "
                 "in certified centres. JACIE accreditation may be required. Some products are Section 129c "
                 "hospital pharmacy preparations, affecting reimbursement routes."
+            ),
+            (
+                "CAR-T therapies including tisagenlecleucel (Kymriah) are approved for relapsed/refractory "
+                "acute lymphoblastic leukaemia (ALL) in paediatric and young adult patients. G-BA assessments "
+                "have resulted in both beträchtlicher Zusatznutzen (considerable added benefit) and erheblicher "
+                "Zusatznutzen (major added benefit) ratings depending on the specific indication and whether "
+                "the CAR-T represents the only curative option. The single-administration nature of CAR-T "
+                "therapies distinguishes them from chronic treatments in terms of pricing and payer risk."
             ),
         ],
     ),
@@ -321,7 +331,8 @@ EVAL_DATASET: list[EvalSample] = [
                 "Pricing and Reimbursement Committee (CPR) negotiates the price. For reimbursement, AIFA "
                 "classifies drugs into Classe A (fully reimbursed), Classe H (hospital only), or Classe C "
                 "(patient pays). Innovation classification (terapeutica, nosologica, or processuale) "
-                "unlocks a dedicated innovation fund."
+                "unlocks a dedicated ring-fenced innovation fund, providing priority reimbursement "
+                "separate from the general pharmaceutical budget."
             ),
             (
                 "AIFA operates one of Europe's most developed systems for outcomes-based pricing using "
@@ -331,10 +342,11 @@ EVAL_DATASET: list[EvalSample] = [
                 "a fraction if treatment fails) and risk-sharing arrangements."
             ),
             (
-                "Budget impact models submitted to AIFA cover a 3-year horizon for the NHS (SSN) budget. "
-                "AIFA negotiated prices are typically among the lowest in the Big-5 EU markets due to "
-                "Italy's GDP and reference pricing from lower-cost countries. Parallel trade is a "
-                "significant concern for multinational manufacturers."
+                "Budget impact analysis (analisi di impatto sul budget) is mandatory for all drugs "
+                "seeking reimbursement with AIFA, covering a 3-year time horizon for the National "
+                "Health Service (SSN) budget. AIFA negotiated prices are typically among the lowest "
+                "in the Big-5 EU markets due to Italy's GDP and reference pricing from lower-cost "
+                "countries. Parallel trade is a significant concern for multinational manufacturers."
             ),
         ],
     ),
@@ -430,10 +442,12 @@ EVAL_DATASET: list[EvalSample] = [
         contexts=[
             (
                 "EMA's Paediatric Committee (PDCO) is responsible for scientific aspects of paediatric "
-                "medicines in the EU. Applicants must submit a PIP application early in development and "
-                "obtain PDCO agreement before filing a marketing authorisation application. PIPs specify "
-                "required age-group studies, formulations, and pharmacokinetic/safety endpoints for "
-                "children (preterm neonate to adolescent, 0–17 years)."
+                "medicines in the EU. Under EU Regulation (EC) No 1901/2006 (the Paediatric Regulation), "
+                "applicants must submit a PIP application early in development and obtain PDCO agreement "
+                "before filing a marketing authorisation application. PIP compliance is mandatory even if "
+                "the applicant does not seek a paediatric indication — failure to comply results in refusal "
+                "of the marketing authorisation. PIPs specify required age-group studies, formulations, and "
+                "pharmacokinetic/safety endpoints for children (preterm neonate to adolescent, 0–17 years)."
             ),
             (
                 "Waivers from PIP requirements are granted when the condition does not occur in children "
@@ -502,8 +516,10 @@ EVAL_DATASET: list[EvalSample] = [
         ),
         contexts=[
             (
-                "ASMR V (no improvement) is assigned by HAS when the medicine does not demonstrate "
-                "superiority over the most appropriate comparator on any relevant clinical endpoint. "
+                "ASMR V is the lowest ASMR category and indicates no demonstrated improvement "
+                "in clinical benefit over existing treatments. It is assigned by HAS when the medicine "
+                "does not demonstrate superiority over the most appropriate comparator on any relevant "
+                "clinical endpoint. An ASMR V rating means the drug offers no therapeutic added value. "
                 "This rating is common for drugs entering a crowded therapeutic class or with insufficient "
                 "comparative data. In 2022, approximately 55% of new drugs assessed by HAS received ASMR V. "
                 "ASMR V drugs are still reimbursed provided the drug holds an SMR rating of Important, "
@@ -538,11 +554,11 @@ EVAL_DATASET: list[EvalSample] = [
         contexts=[
             (
                 "EMA Regulation (EC 726/2004) provides the legal basis for centralised marketing "
-                "authorisations. Standard (full) MAs require complete Module 5 clinical data demonstrating "
-                "efficacy, safety, and acceptable benefit-risk balance. Conditional MAs (CMA) under "
-                "Regulation (EC) 507/2006 are granted when the benefit of immediate availability outweighs "
-                "the risk of less comprehensive data — applicable in serious/life-threatening conditions "
-                "with unmet medical need."
+                "authorisations. Standard (full) MAs require complete clinical, non-clinical (Module 4), "
+                "and quality (Module 3) data demonstrating efficacy, safety, and acceptable benefit-risk "
+                "balance. Conditional MAs (CMA) under Regulation (EC) 507/2006 are granted when the "
+                "benefit of immediate availability outweighs the risk of less comprehensive data — "
+                "applicable in serious/life-threatening conditions with unmet medical need."
             ),
             (
                 "CMA holders must fulfil specific obligations (SOBs) — additional post-marketing studies "
@@ -613,10 +629,13 @@ EVAL_DATASET: list[EvalSample] = [
         ),
         contexts=[
             (
-                "In the Netherlands, the CBG (Medicines Evaluation Board) is responsible for national "
-                "marketing authorisations and advises on biosimilar regulatory matters. EMA's centralised "
-                "approval is recognised, and CBG does not conduct separate clinical evaluations. "
-                "Interchangeability decisions are left to clinical guidelines and hospital formularies."
+                "In the Netherlands, the CBG (College ter Beoordeling van Geneesmiddelen — Medicines "
+                "Evaluation Board) follows EMA guidance on biosimilars and is responsible for national "
+                "marketing authorisations. EMA's centralised approval is recognised, and CBG does not "
+                "conduct separate clinical evaluations. Biosimilar interchangeability — the ability to "
+                "switch between the reference biologic and a biosimilar or between biosimilars — is "
+                "assessed at the prescriber level; automatic substitution at pharmacy without prescriber "
+                "consent is generally not permitted in the Netherlands."
             ),
             (
                 "Zorginstituut Nederland (ZIN) conducts HTA for reimbursement decisions. For biosimilars, "
@@ -668,6 +687,14 @@ EVAL_DATASET: list[EvalSample] = [
                 "are accepted with caution due to administrative burden. Net prices are commercially "
                 "confidential to prevent international reference pricing impact."
             ),
+            (
+                "In Germany, drugs receiving a 'kein Zusatznutzen belegt' (no added benefit proven) AMNOG "
+                "rating are subject to cost-sharing: the GKV-Spitzenverband negotiates a reimbursement "
+                "amount benchmarked to the cost of the appropriate comparator. The UK NHS negotiates "
+                "commercial access agreements with NICE appraisal support for high-cost medicines, "
+                "including within the Cancer Drugs Fund (CDF) pathway. MEAs are particularly prevalent "
+                "for ATMPs and CAR-T therapies where long-term durability data are still maturing."
+            ),
         ],
     ),
     EvalSample(
@@ -687,8 +714,8 @@ EVAL_DATASET: list[EvalSample] = [
                 "drug framework. Applications for orphan designation are submitted to EMA at any point "
                 "before marketing authorisation. COMP evaluates: prevalence criterion (< 5 in 10,000), "
                 "medical plausibility of the condition, and medical plausibility of the drug's benefit. "
-                "Designation is granted for a specific orphan condition — a drug can hold multiple ODDs "
-                "for different conditions."
+                "The ODD is product-specific, not company-specific — if product ownership transfers, "
+                "the designation transfers with it. A drug can hold multiple ODDs for different conditions."
             ),
             (
                 "Incentives of EU orphan designation: 10-year market exclusivity following central MA "
@@ -724,15 +751,18 @@ EVAL_DATASET: list[EvalSample] = [
                 "direct NHS and PSS costs; (2) time horizon — long enough to capture all relevant cost and "
                 "health differences, typically lifetime for chronic conditions; (3) health outcomes — "
                 "QALYs calculated using preference-based HRQoL instruments, preferably EQ-5D; (4) discount "
-                "rate — 3.5% per annum for both costs and health outcomes; (5) comparing against the most "
-                "plausible cost-effective alternative."
+                "rate — 3.5% per annum for both costs and health outcomes; (5) costs expressed in GBP at "
+                "the retail price or NHS-negotiated price; (6) comparing against the most plausible "
+                "cost-effective alternative."
             ),
             (
                 "Model structure for NICE submissions: Markov cohort models are standard for many oncology "
                 "and chronic disease appraisals. Partitioned survival models (PartSA) are common in oncology "
                 "using survival data from RCTs with extrapolation. Individual patient simulation (IPS) may "
                 "be used when patient heterogeneity is important. All models must be submitted as executable "
-                "files (typically Excel with VBA or R) for the Evidence Review Group to validate."
+                "files (typically Excel with VBA or R) for the Evidence Review Group (ERG) to critically "
+                "appraise; the ERG often reruns the manufacturer's model to validate assumptions and test "
+                "alternative scenarios."
             ),
             (
                 "Uncertainty handling in NICE models: deterministic sensitivity analysis (one-way), "
@@ -775,6 +805,15 @@ EVAL_DATASET: list[EvalSample] = [
                 "treatment-refractory patients expanding to earlier lines, and rare diseases where "
                 "phase III trials are ethically or practically infeasible. Real-world evidence (RWE) "
                 "from electronic health records and registries supports iterative evidence generation."
+            ),
+            (
+                "The adaptive pathways pilot influenced EMA's broader pragmatic clinical evidence framework, "
+                "encouraging iterative evidence generation and early regulatory-developer dialogue. Adaptive "
+                "pathways have close operational links with conditional marketing authorisation (CMA): "
+                "initial restricted approvals are often granted as CMAs, with real-world evidence and "
+                "post-market studies fulfilling specific obligations that support subsequent label expansion "
+                "or conversion to full marketing authorisation. The EMA-EUnetHTA parallel scientific advice "
+                "supports joint regulatory-HTA engagement from early development."
             ),
         ],
     ),

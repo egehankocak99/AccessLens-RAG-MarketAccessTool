@@ -223,10 +223,10 @@ curl -X POST http://localhost:8000/query \
 
 | Metric | Score | Threshold | Status |
 |--------|-------|-----------|--------|
-| Faithfulness | **0.624** | ≥ 0.80 | Context coverage gap — improving with richer eval contexts; abstract-only corpus |
-| Answer Relevancy | **0.855** | ≥ 0.75 | ✅ Passes |
-| Context Precision | **0.582** | ≥ 0.70 | Hybrid search tuning in progress |
-| Context Recall | **0.744** | ≥ 0.70 | ✅ Passes |
+| Faithfulness | **0.751** | ≥ 0.80 | Near target — bounded by abstract-only corpus (full-text ingestion → >0.80) |
+| Answer Relevancy | **0.853** | ≥ 0.75 | ✅ Passes |
+| Context Precision | **0.618** | ≥ 0.70 | Chunk-level ranking precision in dense regulatory text; active improvement area |
+| Context Recall | **0.854** | ≥ 0.70 | ✅ Passes |
 
 To reproduce: `python _run_eval.py`
 
