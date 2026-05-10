@@ -46,6 +46,13 @@ EVAL_DATASET: list[EvalSample] = [
                 "in a lower benefit category. Real-world evidence is generally not accepted as primary evidence "
                 "for AMNOG assessments."
             ),
+            (
+                "Patient-relevant endpoints required in AMNOG dossiers include overall survival (OS), "
+                "progression-free survival (PFS), response rates (tumour response), health-related quality "
+                "of life (HRQoL), and adverse events including serious adverse events and discontinuations. "
+                "Response rates are considered intermediate endpoints and must be accompanied by evidence "
+                "of their clinical relevance."
+            ),
         ],
     ),
     EvalSample(
@@ -145,6 +152,13 @@ EVAL_DATASET: list[EvalSample] = [
                 "though observed in rodent carcinogenicity studies, has not been confirmed in human data "
                 "from cardiovascular outcomes trials (LEADER, SUSTAIN-6, REWIND)."
             ),
+            (
+                "Additional safety signals for GLP-1 receptor agonists include diabetic retinopathy "
+                "worsening observed with rapid glycaemic improvement particularly with semaglutide, "
+                "and acute kidney injury reported secondary to GI-related dehydration. Thyroid C-cell "
+                "tumours are a theoretical risk seen in rodent studies; clinical relevance in humans "
+                "remains unknown based on current evidence."
+            ),
         ],
     ),
     EvalSample(
@@ -243,6 +257,12 @@ EVAL_DATASET: list[EvalSample] = [
                 "Budget impact is separately assessed: for drugs costing over £20 million annually, "
                 "a separate commercial discussion with NHS England may be required."
             ),
+            (
+                "The HST programme applies to treatments for conditions affecting fewer than 1 in 50,000 "
+                "people. The Rare Diseases Advisory Group (RDAG) provides additional expertise to support "
+                "NICE appraisal committees in evaluating evidence for ultra-rare diseases, including "
+                "assessment of single-arm trials and real-world evidence."
+            ),
         ],
     ),
     EvalSample(
@@ -274,6 +294,12 @@ EVAL_DATASET: list[EvalSample] = [
                 "multiple myeloma and acute lymphoblastic leukaemia in recent approvals. EMA's Oncology "
                 "Working Group coordinates guidance on novel biomarker-based endpoints and basket/umbrella "
                 "trial designs."
+            ),
+            (
+                "Event-free survival (EFS) is used as a primary endpoint in paediatric oncology approvals "
+                "where OS data are too immature. EMA requires pre-specified statistical analysis plans "
+                "(SAPs) before unblinding and careful handling of multiple testing through pre-defined "
+                "hierarchical testing procedures to control type I error."
             ),
         ],
     ),
@@ -344,7 +370,8 @@ EVAL_DATASET: list[EvalSample] = [
                 "Key criteria: appropriateness of the comparator network, statistical heterogeneity, "
                 "similarity of study populations, and time horizon of follow-up. ASMR ratings based "
                 "solely on indirect evidence are typically ASMR IV (minor improvement) or V "
-                "(no demonstrated improvement)."
+                "(no demonstrated improvement). EMA may accept ITCs as primary evidence for market "
+                "authorisation in orphan diseases where head-to-head trial data are unavailable."
             ),
         ],
     ),
@@ -376,9 +403,16 @@ EVAL_DATASET: list[EvalSample] = [
             ),
             (
                 "Biosimilar pricing policies across EU: mandatory price reductions at entry vary from 15% "
-                "(some EU markets) to 30–40% (Scandinavia, Netherlands) below the originator price. Tender "
+                "(some EU markets) to 30–40% (Scandinavia, Netherlands) below the originator price, with "
+                "most markets seeing reductions of 20–40%. Tender "
                 "systems (Netherlands CBG-monitored tenders, UK NHSE framework agreements) drive further "
                 "price competition. Some biosimilars are priced below INN reference price lists."
+            ),
+            (
+                "HTA bodies across the EU generally do not conduct a full health technology assessment for "
+                "biosimilars, given that the reference product's clinical benefit is already established. "
+                "Reimbursement is typically granted under the same category as the originator, and "
+                "assessment focuses on price and budget impact rather than clinical effectiveness."
             ),
         ],
     ),
@@ -446,6 +480,13 @@ EVAL_DATASET: list[EvalSample] = [
                 "Intervention, Comparator, Outcomes) agreed with HTAGG. Early dialogue with HTAGG is "
                 "available to align clinical development programs with joint assessment requirements."
             ),
+            (
+                "By replacing 27 separate national clinical HTA assessments with a single EU-level JCA, "
+                "the regulation is expected to save 2–4 years from the typical sequence of national "
+                "HTA processes. National HTA bodies must use the JCA output but retain the right to "
+                "supplement it with their own national economic analyses and local value frameworks "
+                "when making final reimbursement decisions."
+            ),
         ],
     ),
     EvalSample(
@@ -464,7 +505,9 @@ EVAL_DATASET: list[EvalSample] = [
                 "ASMR V (no improvement) is assigned by HAS when the medicine does not demonstrate "
                 "superiority over the most appropriate comparator on any relevant clinical endpoint. "
                 "This rating is common for drugs entering a crowded therapeutic class or with insufficient "
-                "comparative data. In 2022, approximately 55% of new drugs assessed by HAS received ASMR V."
+                "comparative data. In 2022, approximately 55% of new drugs assessed by HAS received ASMR V. "
+                "ASMR V drugs are still reimbursed provided the drug holds an SMR rating of Important, "
+                "Modéré, or Faible — they simply cannot command a premium price over existing comparators."
             ),
             (
                 "Pricing implications of ASMR V: the CEPS negotiates a price that must not exceed the "
@@ -505,7 +548,8 @@ EVAL_DATASET: list[EvalSample] = [
                 "CMA holders must fulfil specific obligations (SOBs) — additional post-marketing studies "
                 "required within agreed timelines. CHMP reviews CMA annually to verify that the benefit-risk "
                 "balance remains positive and obligations are on track. Successful completion converts CMA "
-                "to a full standard MA."
+                "to a full standard MA. A CMA is valid for one year and must be renewed annually until "
+                "converted to a standard marketing authorisation."
             ),
             (
                 "EMA's authorisation under exceptional circumstances (AEC) applies when comprehensive clinical "
@@ -546,6 +590,12 @@ EVAL_DATASET: list[EvalSample] = [
                 "lower benefit categories: proof (Beleg, highest) > indication (Anhaltspunkt) > hint "
                 "(Hinweis). The level of evidence directly maps to the benefit category assigned and "
                 "ultimately affects the reimbursement amount negotiated."
+            ),
+            (
+                "For rare diseases where conducting a phase III trial is infeasible due to small patient "
+                "populations or ethical constraints, G-BA may consider phase II data with robust effect "
+                "sizes. In such cases, the benefit category is typically lower (Anhaltspunkt or Hinweis) "
+                "reflecting the lower evidence certainty, but reimbursement is still possible."
             ),
         ],
     ),
@@ -650,7 +700,9 @@ EVAL_DATASET: list[EvalSample] = [
                 "Market exclusivity for orphan drugs prevents EMA from granting a marketing authorisation "
                 "for a similar medicine for the same condition unless the competitor demonstrates clinical "
                 "superiority (greater efficacy, fewer side effects, greater safety) or if the orphan "
-                "medicine holder has lost designation status or cannot supply sufficient quantities."
+                "medicine holder has lost designation status or cannot supply sufficient quantities. "
+                "Market exclusivity may also be revoked if post-approval data show the drug is "
+                "sufficiently profitable without the incentive."
             ),
         ],
     ),
