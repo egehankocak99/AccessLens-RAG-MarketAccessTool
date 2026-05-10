@@ -22,16 +22,7 @@
 
 ## Demo
 
-> **To add a screenshot or GIF:** Run the app (`python _run_eval.py` then start uvicorn), open `frontend/index.html`, ask a query, then record a short screen capture and save it as `docs/demo.gif`. Then replace this block with:
-> `![AccessLens Demo](docs/demo.gif)`
-
-Example query output structure:
-```
-Question : What evidence does G-BA require for oncology drugs under AMNOG?
-Sources  : PubMed · ClinicalTrials.gov (live-fetched)
-Answer   : G-BA requires a benefit dossier with OS/PFS/QoL endpoints from RCTs...
-Faithful : 87%  |  Latency: 42s  |  Tokens: 1,240 in · 380 out
-```
+![AccessLens Demo](assets/demo.gif)
 
 ---
 
