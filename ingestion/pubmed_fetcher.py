@@ -29,8 +29,12 @@ class PubMedFetcher:
         self.session.headers.update({"User-Agent": "AccessLens/1.0 (contact: {})".format(self.email)})
 
     def fetch(self, query: str) -> list[dict[str, Any]]:
+        # Try with the EU filter first; fall back to the bare query if it returns nothing.
         eu_query = f"({query}) AND {EU_FILTER}"
         pmids = self._search(eu_query)
+        if not pmids:
+            logger.warning("PubMed: no results with EU filter for '%s', retrying without", query)
+            pmids = self._search(query)
         if not pmids:
             logger.warning("PubMed: no results for query '%s'", query)
             return []

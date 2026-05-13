@@ -30,13 +30,27 @@ class ClinicalTrialsFetcher:
         # Drop records missing both title and conditions
         return [p for p in parsed if p.get("title") or p.get("conditions")]
 
+    @staticmethod
+    def _sanitize_query(query: str) -> str:
+        """Strip Lucene special chars and truncate to 12 words (API complexity limit)."""
+        import re
+        # Replace hyphens with spaces (e.g. "progression-free" → "progression free")
+        q = query.replace("-", " ")
+        # Remove other Lucene special characters: + ! ( ) { } [ ] ^ " ~ * ? : \ /
+        q = re.sub(r'[+!(){}\[\]^"~*?:\\/]', " ", q)
+        # Collapse whitespace
+        q = re.sub(r"\s+", " ", q).strip()
+        # ClinicalTrials v2 Lucene parser rejects queries with >12 terms ("Too complicated query")
+        words = q.split()
+        return " ".join(words[:12])
+
     def _build_params(self, query: str) -> dict[str, Any]:
-        # ClinicalTrials API rejects very long query strings with 400; truncate to safe length
-        safe_query = query[:200]
+        # ClinicalTrials v2 uses Lucene syntax — sanitize and truncate before sending.
+        # filter.overallStatus must be comma-separated. filter.geo is not a valid v2 param.
+        safe_query = self._sanitize_query(query)
         return {
             "query.term": safe_query,
-            "filter.geo": "distance(51.5,10,3000km)",
-            "filter.overallStatus": "|".join(RELEVANT_STATUSES),
+            "filter.overallStatus": ",".join(RELEVANT_STATUSES),
             "pageSize": self.page_size,
             "format": "json",
             "fields": (

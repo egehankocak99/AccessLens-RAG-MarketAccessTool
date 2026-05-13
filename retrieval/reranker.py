@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import math
 from typing import Any
 
 from sentence_transformers import CrossEncoder
@@ -47,7 +48,7 @@ class CrossEncoderReranker:
         results = []
         for score, chunk in scored[:n]:
             enriched = dict(chunk)
-            enriched["rerank_score"] = float(score)
+            enriched["rerank_score"] = 1.0 / (1.0 + math.exp(-float(score)))  # sigmoid → 0-1
             results.append(enriched)
 
         logger.info(
